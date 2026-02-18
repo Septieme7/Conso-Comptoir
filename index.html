@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de Consommations</title>
+    <meta name="description" content="Calculez vos consos entre amis avec style. 100% Jack Pub.">
+    
+    <!-- Icônes & manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="assets/manifest/site.webmanifest">
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Header avec logo centré et bouton thème -->
+    <header class="main-header">
+        <div class="logo-container" style="width: 300px; height: 200px;">
+            <canvas id="logoCanvas" width="300" height="200"></canvas>
+        </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="Basculer mode sombre/clair">🌓</button>
+    </header>
+
+    <main class="container">
+        <!-- Carte des Boissons -->
+        <section class="drinks-menu card">
+            <h2>🥃 Carte des Boissons</h2>
+            <div class="add-drink-form">
+                <input type="text" id="drinkName" placeholder="Nom de la boisson">
+                <input type="number" id="drinkPrice" placeholder="Prix (€)" step="0.10" min="0">
+                <button id="addDrinkBtn" class="btn btn-primary">Ajouter</button>
+                <button id="resetDrinksBtn" class="btn btn-outline">Réinitialiser (vider)</button>
+            </div>
+            <div class="drinks-list" id="drinksList">
+                <!-- Généré par JS -->
+            </div>
+        </section>
+
+        <!-- Alerte Budget -->
+        <section class="alert-budget card">
+            <h2>⚙️ Alerte Budget</h2>
+            <div class="alert-row">
+                <span class="alert-label">Alerte à partir de :</span>
+                <span class="alert-value" id="globalAlertDisplay">30 € par personne</span>
+            </div>
+            <div class="alert-row">
+                <label for="alertEnabled">✓ Alerte activée</label>
+                <input type="checkbox" id="alertEnabled" checked>
+            </div>
+            <div class="alert-row">
+                <label for="soundSelect">Son d’alerte :</label>
+                <select id="soundSelect">
+                    <option value="alarm1.mp3">Son1</option>
+                    <option value="alarm2.mp3">Son2</option>
+                    <option value="alarm3.mp3">Son3</option>
+                    <option value="alarm4.mp3">Son4</option>
+                    <option value="alarm5.mp3">Son5</option>
+                </select>
+                <button id="stopSoundBtn" class="btn-small" title="Arrêter le son en cours">⏹️ Stop</button>
+            </div>
+        </section>
+
+        <!-- Participants -->
+        <section class="participants-section">
+            <div class="section-header">
+                <h2>👥 Participants</h2>
+                <button id="addPersonBtn" class="btn btn-primary">➕ Ajouter un Alcoolique</button>
+            </div>
+            <div id="personsContainer" class="persons-grid"></div>
+
+            <!-- Totaux globaux -->
+            <div class="global-totals card">
+                <div class="total-row">
+                    <span>🍺 Total verres :</span>
+                    <strong id="totalGlassesCount">0</strong>
+                </div>
+                <div class="total-row">
+                    <span>💰 Note Totale :</span>
+                    <strong id="grandTotalDisplay">0.00 €</strong>
+                </div>
+                <div class="total-row">
+                    <span>👥 Participants :</span>
+                    <strong id="totalPersonsCount">0</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-left" aria-hidden="true">
+            <img src="assets/images/6.png" alt="">
+        </div>
+        <div class="footer-center">
+            <p>À consommer avec modération 🍺</p>
+        </div>
+        <div class="footer-right" aria-hidden="true">
+            <img src="assets/images/11.png" alt="">
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

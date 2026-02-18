@@ -1,0 +1,45 @@
+# Fichier spécifique
+Euh Comment Ss7.txt
+
+# Temporaires
+*.log
+*.tmp
+*.temp
+
+# Dépendances (si jamais)
+node_modules/
+bower_components/
+vendor/
+
+# Builds
+dist/
+build/
+out/
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environnements
+.env
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Package lock (optionnel)
+package-lock.json
+yarn.lock
+
+# Cache
+.cache/
+.tmp/
