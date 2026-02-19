@@ -233,6 +233,7 @@ body {
 
 .card {
     background-color: var(--card-bg);
+    opacity: 0.9; /* rend toute la carte à 90% d'opacité */
     border-radius: 1.5rem;
     padding: 1.8rem;
     box-shadow: var(--shadow);
@@ -393,6 +394,7 @@ body {
 
 .person-card {
     background-color: var(--card-bg);
+    opacity: 0.9; /* rend toute la carte à 90% d'opacité */
     border-radius: 1.5rem;
     padding: 1.5rem;
     border: 1px solid var(--border);
@@ -608,6 +610,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: var(--wood-dark);
+    opacity: 0.9; /* rend toute la carte à 90% d'opacité */
     border-top: 2px solid var(--gold);
     padding: 1.5rem 2rem;
     min-height: 100px;
