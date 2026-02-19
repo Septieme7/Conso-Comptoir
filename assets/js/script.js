@@ -29,9 +29,7 @@ const resetDrinksBtn = document.getElementById('resetDrinksBtn');
 const drinkNameInput = document.getElementById('drinkName');
 const drinkPriceInput = document.getElementById('drinkPrice');
 const drinksListDiv = document.getElementById('drinksList');
-const canvas = document.getElementById('logoCanvas');
 const themeToggle = document.getElementById('themeToggle');
-const globalAlertDisplay = document.getElementById('globalAlertDisplay');
 const infoBtn = document.getElementById('infoBtn');
 const infoPopup = document.getElementById('infoPopup');
 const closePopup = document.querySelector('.close-popup');
@@ -122,12 +120,7 @@ function updateStats() {
     grandTotalSpan.textContent = calculateGrandTotal().toFixed(2) + ' €';
     totalGlassesSpan.textContent = calculateTotalGlasses();
     totalPersonsSpan.textContent = persons.length;
-    if (persons.length > 0) {
-        const seuils = persons.map(p => p.threshold.toFixed(2)).join(' / ');
-        globalAlertDisplay.textContent = `${seuils} € par personne`;
-    } else {
-        globalAlertDisplay.textContent = '30 € par personne';
-    }
+    // La mise à jour de l'affichage du seuil global a été supprimée
 }
 
 // ---------- CARTE PERSONNE ----------
@@ -354,7 +347,12 @@ function playSound(file) {
     const path = `assets/sound/${file}`;
     window.audioElement = new Audio(path);
     window.audioElement.play().catch(e => {
-        console.error('Erreur lecture son:', e);
+        // Ignorer l'erreur de lecture automatique (politique navigateur)
+        if (e.name === 'NotAllowedError') {
+            console.warn('Lecture automatique bloquée. Le son sera joué après une interaction utilisateur.');
+        } else {
+            console.error('Erreur lecture son:', e);
+        }
     });
 }
 
@@ -378,43 +376,6 @@ soundSelect.addEventListener('change', (e) => {
     selectedSound = e.target.value;
     saveToLocalStorage();
 });
-
-// ---------- LOGO (unique Logo7.png) avec amélioration qualité ----------
-function drawLogo() {
-    const ctx = canvas.getContext('2d');
-    // Activer le lissage haute qualité
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-
-    const img = new Image();
-    img.src = 'assets/images/Logo7.png';
-
-    img.onload = function() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // Remplir le canvas en conservant le ratio
-        const ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
-        const w = img.width * ratio;
-        const h = img.height * ratio;
-        const x = (canvas.width - w) / 2;
-        const y = (canvas.height - h) / 2;
-        ctx.drawImage(img, x, y, w, h);
-    };
-
-    img.onerror = function() {
-        console.error('Logo7.png introuvable. Vérifiez le chemin assets/images/Logo7.png');
-        // Dessiner un logo de secours
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'var(--gold)';
-        ctx.beginPath();
-        ctx.arc(canvas.width/2, canvas.height/2, 50, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.fillStyle = 'black';
-        ctx.font = 'bold 20px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('Logo', canvas.width/2, canvas.height/2);
-    };
-}
 
 // ---------- THÈME ----------
 themeToggle.addEventListener('click', () => {
@@ -442,7 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
     renderDrinksList();
     render();
-    drawLogo();
 
     addPersonBtn.addEventListener('click', () => {
         persons.push(createRandomPerson());

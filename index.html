@@ -20,7 +20,8 @@
     <!-- Header avec logo centré, bouton thème et bouton info -->
     <header class="main-header">
         <div class="logo-container">
-            <canvas id="logoCanvas" width="400" height="267"></canvas> <!-- ratio 3:2 pour meilleure résolution -->
+            <!-- Remplacement du canvas par une balise img -->
+            <img src="assets/images/Logo7.png" alt="Logo du bar" id="logoImg" class="logo-image">
         </div>
         <div class="header-buttons">
             <button id="infoBtn" class="info-button" aria-label="Aide">i</button>
@@ -45,11 +46,10 @@
 
         <!-- Alerte Budget -->
         <section class="alert-budget card">
-            <h2>⚙️ Alerte Budget</h2>
-            <div class="alert-row">
-                <span class="alert-label">Alerte à partir de :</span>
-                <span class="alert-value" id="globalAlertDisplay">30 € par personne</span>
+            <div class="alert-header">
+                <h2>⚙️ Alerte Budget</h2>
             </div>
+            <!-- La ligne "Alerte à partir de : 30 € par personne" a été supprimée -->
             <div class="alert-row">
                 <label for="alertEnabled">✓ Alerte activée</label>
                 <input type="checkbox" id="alertEnabled" checked>
@@ -121,6 +121,7 @@
                 <li><strong>Couper le son</strong> : utilisez le bouton 🔇/🔊 pour chaque participant.</li>
                 <li><strong>Arrêter une alarme</strong> : cliquez sur "Stop" dans la section Alerte.</li>
                 <li><strong>Changer de thème</strong> : utilisez le bouton 🌓 en haut à droite.</li>
+                <li><strong>✓ Alerte activée</strong> : cette case active/désactive l'alerte pour tous les participants.</li>
             </ul>
         </div>
     </div>
