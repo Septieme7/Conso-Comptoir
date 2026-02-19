@@ -1,6 +1,6 @@
-# Le Jack Pub – Calculateur de consos
+# Pub/Bar/lounge - Calculateur de consos
 
-Application web statique pour calculer les notes de plusieurs personnes lors d’un apéro au **Jack Pub**.  
+Application web statique pour calculer les notes de plusieurs personnes lors d’un apéro au ** Pub **.  
 Elle permet de :
 
 - Ajouter / supprimer des personnes.
@@ -17,7 +17,7 @@ Elle permet de :
 
 1. Clonez ou téléchargez ce dépôt.
 2. Placez vos images dans `assets/images/` :
-   - `BGJackPub1.png` (fond de page)
+   - `BGPub1.png` (fond de page)      
    - `1.png`, `2.png`, `5.png`, `6.png`, `10.png`, `11.png`
 3. Placez 6 fichiers son dans `assets/sound/` nommés `son1.mp3` … `son6.mp3`.
 4. Ouvrez `index.html` dans un navigateur moderne.
@@ -43,4 +43,4 @@ Elle permet de :
 
 ## Auteur
 
-Créé pour "Le Jack Pub" sur demande spécifique.
+Ss7

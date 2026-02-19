@@ -1,5 +1,5 @@
 // ====================================================
-// LE JACK PUB - Version finale sans gestion d'établissement
+// LE PUB Conso - Version finale sans gestion d'établissement
 // Logo unique : Logo7.png
 // ====================================================
 
