@@ -1,6 +1,6 @@
 // ====================================================
-// LE PUB Conso - Version finale sans gestion d'établissement
-// Logo unique : Logo7.png
+// PUB/BAR/LOUNGE - Calculateur de consos
+// Logo unique : Logo7.png, fonds aléatoires, 7 sons
 // ====================================================
 
 let persons = [];
@@ -9,7 +9,6 @@ let alertEnabled = true;
 let selectedSound = 'alarm1.mp3';
 let drinks = [];
 
-const defaultDrinks = [];
 const randomNames = [
     'Alcoolique 2', 'Puit sans fond 3', 'L\'inflammable 4', 'Jefff 5',
     'La Momie 6', 'Lara 7', 'pochtron 8', 'bois sans soif 9', 'Sifflard 10',
@@ -33,9 +32,19 @@ const drinksListDiv = document.getElementById('drinksList');
 const canvas = document.getElementById('logoCanvas');
 const themeToggle = document.getElementById('themeToggle');
 const globalAlertDisplay = document.getElementById('globalAlertDisplay');
+const infoBtn = document.getElementById('infoBtn');
+const infoPopup = document.getElementById('infoPopup');
+const closePopup = document.querySelector('.close-popup');
 
 window.alertTriggered = false;
 window.audioElement = null;
+
+// ---------- FOND D'ÉCRAN ALÉATOIRE ----------
+function setRandomBackground() {
+    const num = Math.floor(Math.random() * 7) + 1; // 1 à 7
+    document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/BGPub${num}.png')`;
+}
+setRandomBackground();
 
 // ---------- PERSISTANCE ----------
 function saveToLocalStorage() {
@@ -46,11 +55,11 @@ function saveToLocalStorage() {
         selectedSound,
         drinks
     };
-    localStorage.setItem('jackpubState', JSON.stringify(state));
+    localStorage.setItem('pubConsoState', JSON.stringify(state));
 }
 
 function loadFromLocalStorage() {
-    const saved = localStorage.getItem('jackpubState');
+    const saved = localStorage.getItem('pubConsoState');
     if (saved) {
         try {
             const state = JSON.parse(saved);
@@ -370,15 +379,19 @@ soundSelect.addEventListener('change', (e) => {
     saveToLocalStorage();
 });
 
-// ---------- LOGO (unique Logo7.png) ----------
+// ---------- LOGO (unique Logo7.png) avec amélioration qualité ----------
 function drawLogo() {
     const ctx = canvas.getContext('2d');
+    // Activer le lissage haute qualité
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
     const img = new Image();
     img.src = 'assets/images/Logo7.png';
 
     img.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // Ajuster l'image pour remplir au mieux sans déformation
+        // Remplir le canvas en conservant le ratio
         const ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
         const w = img.width * ratio;
         const h = img.height * ratio;
@@ -407,6 +420,21 @@ function drawLogo() {
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
     themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌑' : '🌓';
+});
+
+// ---------- POPUP INFO ----------
+infoBtn.addEventListener('click', () => {
+    infoPopup.classList.add('show');
+});
+
+closePopup.addEventListener('click', () => {
+    infoPopup.classList.remove('show');
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === infoPopup) {
+        infoPopup.classList.remove('show');
+    }
 });
 
 // ---------- INIT ----------

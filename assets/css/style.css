@@ -1,5 +1,5 @@
 /* ====================================================
-   STYLE COMPLET - LE JACK PUB (logo centré)
+   STYLE COMPLET - PUB/BAR/LOUNGE (avec logo unique)
    ==================================================== */
 
 :root {
@@ -71,14 +71,10 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/BGJackPub1.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-}
-
-body.light-mode {
-    background-image: linear-gradient(rgba(255,255,240,0.3), rgba(255,255,240,0.3)), url('../images/BGJackPub1.png');
+    transition: background-image 0.3s ease;
 }
 
 /* ========== HEADER (logo centré) ========== */
@@ -86,8 +82,7 @@ body.light-mode {
     position: relative;
     z-index: 10;
     display: flex;
-    justify-content: center; /* centre le logo */
-    align-items: center;
+    justify-content: center;
     padding: 1rem 2rem;
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(5px);
@@ -95,8 +90,8 @@ body.light-mode {
 }
 
 .logo-container {
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 267px; /* ratio 3:2 */
     flex-shrink: 0;
 }
 
@@ -105,13 +100,43 @@ body.light-mode {
     height: 100%;
     display: block;
     box-shadow: var(--shadow);
+    /* Amélioration du rendu */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges; /* ou auto */
 }
 
-.theme-toggle {
+.header-buttons {
     position: absolute;
     right: 2rem;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.info-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--primary-foreground);
+    border: 2px solid var(--gold-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.info-button:hover {
+    transform: scale(1.1);
+    background: var(--gold-light);
+}
+
+.theme-toggle {
     background: transparent;
     border: 2px solid var(--gold);
     border-radius: 3rem;
@@ -126,6 +151,74 @@ body.light-mode {
 .theme-toggle:hover {
     background: var(--gold);
     color: var(--primary-foreground);
+}
+
+/* ========== POPUP INFO ========== */
+.info-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.info-popup.show {
+    display: flex;
+}
+
+.info-content {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    padding: 2rem;
+    border-radius: 2rem;
+    max-width: 500px;
+    width: 90%;
+    border: 2px solid var(--gold);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--gold);
+}
+
+.close-popup:hover {
+    color: var(--destructive);
+}
+
+.info-content h3 {
+    font-family: var(--font-serif);
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.info-content ul {
+    list-style-type: none;
+}
+
+.info-content li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.info-content li::before {
+    content: "•";
+    color: var(--gold);
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -0.2rem;
 }
 
 /* ========== CONTENEUR PRINCIPAL ========== */
@@ -526,19 +619,20 @@ body.light-mode {
     width: 100px;
 }
 
-.footer-left img,
-.footer-right img {
+.footer-img {
     width: 100%;
     height: auto;
-    opacity: 0.7;
-    filter: brightness(0.9);
+    /* Application d'une teinte dorée pour être visible sur tous les fonds */
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg);
+    opacity: 0.9;
 }
 
 .footer-center {
     text-align: center;
-    color: var(--muted-foreground);
+    color: var(--gold);
     font-size: 1.2rem;
     font-family: var(--font-serif);
+    text-shadow: 1px 1px 2px black;
 }
 
 /* ========== RESPONSIVE ========== */
@@ -549,20 +643,15 @@ body.light-mode {
         gap: 1rem;
     }
 
-    .theme-toggle {
-        position: static; /* on remet en flux normal */
+    .header-buttons {
+        position: static;
         transform: none;
         margin-top: 0.5rem;
     }
 
     .logo-container {
-        width: 200px !important;
-        height: 120px !important;
-    }
-
-    #logoCanvas {
-        width: 200px;
-        height: 120px;
+        width: 300px;
+        height: 200px;
     }
 
     .container {

@@ -6,7 +6,7 @@ Elle permet de :
 - Ajouter / supprimer des personnes.
 - Pour chaque personne, ajouter des consommations avec nom et prix.
 - Visualiser le total par personne et le total général.
-- Définir un **seuil d’alerte** (ex: 20 €) ; quand le total général atteint ce montant, une sonnerie retentit.
+- Définir un **seuil d’alerte** (ex: 30 €) ; quand le total général atteint ce montant, une sonnerie retentit.
 - Choisir parmi **6 sonneries** différentes (fichiers à placer dans `assets/sound/`).
 - Basculer entre **thème clair et sombre** (les logos/images restent visibles).
 - Design **responsive** (mobile, tablette, desktop).
@@ -43,4 +43,4 @@ Elle permet de :
 
 ## Auteur
 
-Ss7
+Seven7... 
