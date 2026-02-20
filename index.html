@@ -17,15 +17,16 @@
 </head>
 <body>
 
-    <!-- Header avec logo centré, bouton thème et bouton info -->
+    <!-- Header avec logo centré, boutons thème, info et lien externe -->
     <header class="main-header">
         <div class="logo-container">
-            <!-- Remplacement du canvas par une balise img -->
             <img src="assets/images/Logo7.png" alt="Logo du bar" id="logoImg" class="logo-image">
         </div>
         <div class="header-buttons">
             <button id="infoBtn" class="info-button" aria-label="Aide">i</button>
             <button id="themeToggle" class="theme-toggle" aria-label="Basculer mode sombre/clair">🌓</button>
+            <!-- Nouveau bouton vers la liste de courses -->
+            <a href="https://liste-courses7.netlify.app/" target="_blank" rel="noopener" class="external-link-button" aria-label="Aller à la liste de courses">📝</a>
         </div>
     </header>
 
@@ -49,7 +50,6 @@
             <div class="alert-header">
                 <h2>⚙️ Alerte Budget</h2>
             </div>
-            <!-- La ligne "Alerte à partir de : 30 € par personne" a été supprimée -->
             <div class="alert-row">
                 <label for="alertEnabled">✓ Alerte activée</label>
                 <input type="checkbox" id="alertEnabled" checked>
@@ -122,6 +122,7 @@
                 <li><strong>Arrêter une alarme</strong> : cliquez sur "Stop" dans la section Alerte.</li>
                 <li><strong>Changer de thème</strong> : utilisez le bouton 🌓 en haut à droite.</li>
                 <li><strong>✓ Alerte activée</strong> : cette case active/désactive l'alerte pour tous les participants.</li>
+                <li><strong>📝 Liste de courses</strong> : cliquez sur l'icône 📝 pour accéder à l'application liste de courses.</li>
             </ul>
         </div>
     </div>
